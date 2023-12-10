@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Electricity Game.sln"
+    "dotnet.defaultSolution": "Electricity-Game.sln"
 }
