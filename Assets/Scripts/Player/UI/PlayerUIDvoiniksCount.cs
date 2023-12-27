@@ -1,17 +1,17 @@
-using Assets.Scripts.Player;
-using Assets.Scripts.Player.UI;
-
-public class PlayerUIDvoiniksCount : PlayerComponent
+namespace Player.UI
 {
-    DvoinikUI dvoinikUI;
-    public override void Construct(PlayerSettings playerSettings, PlayerStats playerStats)
+    public class PlayerUIDvoiniksCount : PlayerComponent
     {
-        base.Construct(playerSettings, playerStats);
-        dvoinikUI = FindObjectOfType<DvoinikUI>();
-    }
+        DvoinikUI dvoinikUI;
+        public override void Construct(PlayerSettings playerSettings, PlayerStats playerStats)
+        {
+            base.Construct(playerSettings, playerStats);
+            dvoinikUI = FindObjectOfType<DvoinikUI>();
+        }
 
-    public void UpdateText()
-    {
-        dvoinikUI.dvoiniksCountText.text = PlayerStats.dvoiniksCount.ToString();
+        public void UpdateText()
+        {
+            dvoinikUI.dvoiniksCountText.text = PlayerStats.dvoiniksCount.ToString();
+        }
     }
 }

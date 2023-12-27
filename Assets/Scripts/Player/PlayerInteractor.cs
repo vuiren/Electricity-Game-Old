@@ -1,10 +1,8 @@
-﻿using Mirror;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Player
+namespace Player
 {
-    public class PlayerInteractor : NetworkBehaviour, IRootReader
+    public class PlayerInteractor : MonoBehaviour, IRootReader
     {
         PlayerStats playerStats;
         GameObject root;
@@ -13,27 +11,12 @@ namespace Assets.Scripts.Player
         public void Interact()
         {
             if (playerStats.interactableLookingAt != null && Input.GetMouseButtonDown(0))
+                playerStats.interactableLookingAt.Interact(root);
+
+            if (playerStats.interactableLookingAt != null &&  playerStats.interactableLookingAt.ReturnDvoinikToPlayer())
             {
-                if(isClientOnly)
-                {
-                    CmdInteract(playerStats.interactableLookingAt.InteractableGameObject().GetComponentInParent<NetworkIdentity>(), root);
-                }
-                else
-                {
-                    playerStats.interactableLookingAt.Interact(root);
-                }
-
-                if (playerStats.interactableLookingAt.ReturnDvoinikToPlayer())
-                {
-                    playerStats.dvoiniksCount++;
-                }
+                playerStats.dvoiniksCount++;
             }
-        }
-
-        [Command]
-        public void CmdInteract(NetworkIdentity interactableNI, GameObject interactor)
-        {
-            interactableNI.GetComponentInChildren<IInteractable>().Interact(interactor);
         }
 
         public void ReadRoot(GameObject root)
@@ -42,4 +25,5 @@ namespace Assets.Scripts.Player
             this.root = root;
         }
     }
+
 }

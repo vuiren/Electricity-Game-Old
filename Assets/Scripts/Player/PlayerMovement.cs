@@ -1,8 +1,6 @@
-﻿using Assets.Scripts.Player;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts
+namespace Player
 {
     public class PlayerMovement : PlayerComponent
     {

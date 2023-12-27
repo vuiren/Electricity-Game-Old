@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Player;
-using System.Collections;
+﻿using System.Collections;
+using Player;
 using UnityEngine;
 using UnityEngine.LowLevel;
 

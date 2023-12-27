@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-namespace Assets.Scripts.Player.UI
+namespace Player.UI
 {
     public class DvoinikUI : MonoBehaviour
     {

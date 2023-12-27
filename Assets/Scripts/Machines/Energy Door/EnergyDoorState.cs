@@ -1,12 +1,9 @@
-﻿using Mirror;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Machines
 {
-    public class EnergyDoorState : NetworkBehaviour
+    public class EnergyDoorState : MonoBehaviour
     {
-        [SyncVar]
         public bool opened;
     }
 }

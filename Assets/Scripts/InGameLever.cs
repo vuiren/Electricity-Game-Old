@@ -1,14 +1,11 @@
-﻿using Mirror;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class InGameLever : NetworkBehaviour, IInteractable
+    public class InGameLever : MonoBehaviour, IInteractable
     {
         [SerializeField] private Animator animator;
         [SerializeField] private Renderer handleRenderer;
-        [SyncVar]
         public bool activated;
 
         public void Interact(GameObject interactor)

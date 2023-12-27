@@ -1,12 +1,9 @@
-﻿using Mirror;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Machines
 {
-    public class EnergyLightState : NetworkBehaviour
+    public class EnergyLightState : MonoBehaviour
     {
-        [SyncVar]
         private bool lightTurnedOn;
 
         public bool LightTurnedOn { get => lightTurnedOn; set => lightTurnedOn = value; }

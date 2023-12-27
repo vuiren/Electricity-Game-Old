@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.MiniGenerator;
-using Mirror;
+﻿using Assets.Scripts;
+using Assets.Scripts.MiniGenerator;
 using UnityEngine;
 
-namespace Assets.Scripts.Player
+namespace Player
 {
-    public class PlayerMiniGeneratorCaller : NetworkBehaviour
+    public class PlayerMiniGeneratorCaller : MonoBehaviour
     {
         [SerializeField] private Transform placementPoint;
 
@@ -34,7 +34,6 @@ namespace Assets.Scripts.Player
             CmdCallMiniGenerator(placementPoint.position);
         }
 
-        [Command]
         private void CmdCallMiniGenerator(Vector3 clientPos)
         {
             miniGeneratorGenerator.EnergyOutput.connectedEnergyInput = null;
@@ -45,7 +44,6 @@ namespace Assets.Scripts.Player
             RpcCallMiniGenerator(clientPos);
         }
 
-        [ClientRpc]
         private void RpcCallMiniGenerator(Vector3 followPoint)
         {
             miniGeneratorGenerator.EnergyOutput.connectedEnergyInput = null;

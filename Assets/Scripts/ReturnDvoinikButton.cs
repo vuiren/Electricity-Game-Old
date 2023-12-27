@@ -1,9 +1,8 @@
-﻿using Mirror;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class ReturnDvoinikButton : NetworkBehaviour, IInteractable
+    public class ReturnDvoinikButton : MonoBehaviour, IInteractable
     {
         [SerializeField] private GameObject dvoinik;
         [SerializeField] private Renderer buttonRenderer;
@@ -27,7 +26,6 @@ namespace Assets.Scripts
             return dvoinik;
         }
 
-        [Server]
         void DestroyDvoinik()
         {
             print("destroying " + dvoinik.name);
@@ -49,13 +47,11 @@ namespace Assets.Scripts
             {
                 output.connectedEnergyInput = null;
             }
-            NetworkServer.Destroy(dvoinik);
             wiresCreator.ReCreateWires();
             electricityManager.TransferEnergy();
             RpcRecreateWires();
         }
 
-        [ClientRpc]
         void RpcRecreateWires()
         {
             var outputs = dvoinik.GetComponentsInChildren<EnergyOutput>();

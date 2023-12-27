@@ -1,10 +1,11 @@
-using Assets.Scripts.Player;
-
-public class PlayerAnimator : PlayerComponent
+namespace Player
 {
-    public void Animate()
+    public class PlayerAnimator : PlayerComponent
     {
-        PlayerSettings.playerCharacterAnimator.SetBool("moving", PlayerStats.moving);
-        PlayerSettings.playerCharacterAnimator.SetBool("pointing", PlayerStats.creatingWire);
+        public void Animate()
+        {
+            PlayerSettings.playerCharacterAnimator.SetBool("moving", PlayerStats.moving);
+            PlayerSettings.playerCharacterAnimator.SetBool("pointing", PlayerStats.creatingWire);
+        }
     }
 }

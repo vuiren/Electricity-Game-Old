@@ -1,11 +1,9 @@
-﻿using Mirror;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Machines
 {
     [RequireComponent(typeof(Machine), typeof(EnergyLightState))]
-    public class EnergyLight : NetworkBehaviour
+    public class EnergyLight : MonoBehaviour
     {
         Machine machine;
         EnergyLightState energyLightState;
@@ -28,17 +26,6 @@ namespace Assets.Scripts.Machines
         }
 
         public void ToggleLight()
-        {
-            if (isClientOnly)
-            {
-                CmdToggleLight();
-            }
-            else
-                energyLightState.LightTurnedOn = !energyLightState.LightTurnedOn;
-        }
-
-        [Command]
-        private void CmdToggleLight()
         {
             energyLightState.LightTurnedOn = !energyLightState.LightTurnedOn;
         }

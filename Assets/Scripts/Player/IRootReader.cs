@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public interface IRootReader
+namespace Player
 {
-    void ReadRoot(GameObject root);
+    public interface IRootReader
+    {
+        void ReadRoot(GameObject root);
+    }
 }

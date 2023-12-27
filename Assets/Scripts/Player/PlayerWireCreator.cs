@@ -1,13 +1,12 @@
-﻿using Assets.Scripts.Player;
-using Mirror;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts;
+using QFSW.QC;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Player
 {
-    public class PlayerWireCreator : NetworkBehaviour, IRootReader
+    public class PlayerWireCreator : MonoBehaviour, IRootReader
     {
         PlayerStats playerStats;
         WiresCreator wireManager;
@@ -78,11 +77,11 @@ namespace Assets.Scripts
             var wirePositions = new Vector3[wirePreview.positionCount];
             wirePreview.GetPositions(wirePositions);
 
-            CmdConnectWires(playerStats.SelectedOutput.GetComponentInParent<NetworkIdentity>(), playerStats.energyInputLookingAt.GetComponentInParent<NetworkIdentity>(), playerStats.SelectedOutput.id, wirePositions, normals.ToArray());
+            CmdConnectWires(playerStats.SelectedOutput, playerStats.energyInputLookingAt, playerStats.SelectedOutput.id, wirePositions, normals.ToArray());
         }
 
         [Command]
-        private void CmdConnectWires(NetworkIdentity connectedEnergyInputNetworkIdentity, NetworkIdentity energyInputLookingAtNetworkIdentity, int outputId, Vector3[] wirePositions, Vector3[] normals)
+        private void CmdConnectWires(EnergyOutput connectedEnergyInputNetworkIdentity, EnergyInput energyInputLookingAtNetworkIdentity, int outputId, Vector3[] wirePositions, Vector3[] normals)
         {
             print("connecting " + connectedEnergyInputNetworkIdentity.name + " to " + energyInputLookingAtNetworkIdentity.name);
             var selectedOutput = connectedEnergyInputNetworkIdentity.GetComponentsInChildren<EnergyOutput>().First(x => x.id == outputId);
@@ -101,8 +100,7 @@ namespace Assets.Scripts
             RpcConnectWires(connectedEnergyInputNetworkIdentity, energyInputLookingAtNetworkIdentity, outputId);
         }
 
-        [ClientRpc]
-        private void RpcConnectWires(NetworkIdentity connectedEnergyInputGO, NetworkIdentity energyInputLookingAtGO, int outputId)
+        private void RpcConnectWires(EnergyOutput connectedEnergyInputGO, EnergyInput energyInputLookingAtGO, int outputId)
         {
             print("connecting " + connectedEnergyInputGO.transform.name + " to " + energyInputLookingAtGO.transform.name);
             EnergyOutput selectedOutput = connectedEnergyInputGO.GetComponentsInChildren<EnergyOutput>().First(x => x.id == outputId);

@@ -1,5 +1,8 @@
-public enum PlayerToolEnum
+namespace Player
 {
-    Wires,
-    Dvoinik,
+    public enum PlayerToolEnum
+    {
+        Wires,
+        Dvoinik,
+    }
 }

@@ -1,17 +1,17 @@
-﻿using Mirror;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class EnergyOutput : NetworkBehaviour
+    public class EnergyOutput : MonoBehaviour
     {
         public int id;
         public EnergyInput connectedEnergyInput;
         public float transferingEnergy;
         public GameObject connectedMachine;
 
-        public readonly SyncList<Vector3> wirePositions = new SyncList<Vector3>();
-        public readonly SyncList<Vector3> wireNormals = new SyncList<Vector3>();
+        public List<Vector3> wirePositions = new List<Vector3>();
+        public List<Vector3> wireNormals = new List<Vector3>();
 
         // Use this for initialization
         void Awake()

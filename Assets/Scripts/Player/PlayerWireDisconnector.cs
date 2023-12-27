@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
 using UnityEngine;
 
-namespace Assets.Scripts.Player
+namespace Player
 {
     public class PlayerWireDisconnector : MonoBehaviour
     {

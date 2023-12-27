@@ -1,11 +1,10 @@
-using Assets.Scripts.Player;
-using Mirror;
-using System.Collections;
+using Assets.Scripts;
+using Player.UI;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Player
 {
-    public class NetworkPlayer : NetworkBehaviour
+    public class NetworkPlayer : MonoBehaviour
     {
         [SerializeField] private GameObject playerCamera, playerModel;
         [SerializeField] private LayerMask hiddenLayer;
@@ -65,8 +64,8 @@ namespace Assets.Scripts
 
         private T CreateComponent<T>(string name) where T : PlayerComponent
         {
-            var componentGO = Instantiate(new GameObject(name), componentsParent);
-            var component = componentGO.AddComponent<T>();
+            var componentGo = Instantiate(new GameObject(name), componentsParent);
+            var component = componentGo.AddComponent<T>();
             component.Construct(playerSettings, playerStats);
             return component;
         }
@@ -75,15 +74,12 @@ namespace Assets.Scripts
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            playerCamera.SetActive(isOwned);
             //  playerModel.layer = hiddenLayer;
             //playerModel.SetActive(isOwned);
         }
 
         private void Update()
         {
-            if (!isOwned) return;
-
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Cursor.lockState = CursorLockMode.None;
@@ -110,17 +106,12 @@ namespace Assets.Scripts
         private void LateUpdate()
         {
             playerAnimator.Animate();
-
-            if (!isOwned) return;
-
             playerBodyRotation.Rotate();
             syncBodyAndHead.Sync();
         }
 
         private void FixedUpdate()
         {
-            if (!isOwned) return;
-
             playerLookAtController.UpdateLook();
             playerLookAtVisualizer.Visualize();
         }

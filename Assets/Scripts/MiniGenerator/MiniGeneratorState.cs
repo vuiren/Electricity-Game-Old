@@ -1,11 +1,9 @@
-﻿using Mirror;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.MiniGenerator
 {
-    public class MiniGeneratorState : NetworkBehaviour
+    public class MiniGeneratorState : MonoBehaviour
     {
-        [SyncVar]
         public bool moving;
     }
 }
